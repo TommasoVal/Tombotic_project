@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="lower_body_biomechanical">
+  <link name="pelvis">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <mass value="10.65000000" />
+      <inertia ixx="5.82200000e-02" ixy="0" ixz="0" iyy="7.10000000e-02" iyz="0" izz="5.82200000e-02" />
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.200000 0.160000 0.200000" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.200000 0.160000 0.200000" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hip_R_flexion_link" />
+  <link name="hip_R_adduction_link" />
+  <link name="thigh_R">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.186190" />
+      <mass value="7.50000000" />
+      <inertia ixx="1.23484375e-01" ixy="0" ixz="0" iyy="1.23484375e-01" iyz="0" izz="1.58437500e-02" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.065000" length="0.430000" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.065000" length="0.430000" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="shank_R">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.186190" />
+      <mass value="3.48750000" />
+      <inertia ixx="5.55021094e-02" ixy="0" ixz="0" iyy="5.55021094e-02" iyz="0" izz="3.53109375e-03" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.045000" length="0.430000" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.045000" length="0.430000" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="foot_R">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.130000" />
+      <mass value="1.08750000" />
+      <inertia ixx="6.80593750e-03" ixy="0" ixz="0" iyy="6.80593750e-03" iyz="0" izz="1.35937500e-03" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.130000" />
+      <geometry>
+        <cylinder radius="0.050000" length="0.260000" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.130000" />
+      <geometry>
+        <cylinder radius="0.050000" length="0.260000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hip_R_flexion" type="revolute">
+    <parent link="pelvis" />
+    <child link="hip_R_flexion_link" />
+    <origin xyz="-0.100000 0.000000 0.000000" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52359878" upper="2.09439510" effort="1000" velocity="20" />
+  </joint>
+  <joint name="hip_R_adduction" type="revolute">
+    <parent link="hip_R_flexion_link" />
+    <child link="hip_R_adduction_link" />
+    <origin xyz="0.000000 0.000000 0.000000" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.61086524" upper="0.43633231" effort="1000" velocity="20" />
+  </joint>
+  <joint name="hip_R_rotation" type="revolute">
+    <parent link="hip_R_adduction_link" />
+    <child link="thigh_R" />
+    <origin xyz="0.000000 0.000000 0.000000" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.78539816" upper="0.78539816" effort="1000" velocity="20" />
+  </joint>
+  <joint name="knee_R" type="revolute">
+    <parent link="thigh_R" />
+    <child link="shank_R" />
+    <origin xyz="0.000000 0.000000 -0.430000" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.08726646" upper="2.44346095" effort="1000" velocity="20" />
+  </joint>
+  <joint name="ankle_R" type="revolute">
+    <parent link="shank_R" />
+    <child link="foot_R" />
+    <origin xyz="0.000000 0.000000 -0.430000" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52359878" upper="0.78539816" effort="1000" velocity="20" />
+  </joint>
+  <link name="hip_L_flexion_link" />
+  <link name="hip_L_adduction_link" />
+  <link name="thigh_L">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.186190" />
+      <mass value="7.50000000" />
+      <inertia ixx="1.23484375e-01" ixy="0" ixz="0" iyy="1.23484375e-01" iyz="0" izz="1.58437500e-02" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.065000" length="0.430000" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.065000" length="0.430000" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="shank_L">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.186190" />
+      <mass value="3.48750000" />
+      <inertia ixx="5.55021094e-02" ixy="0" ixz="0" iyy="5.55021094e-02" iyz="0" izz="3.53109375e-03" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.045000" length="0.430000" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.215000" />
+      <geometry>
+        <cylinder radius="0.045000" length="0.430000" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="foot_L">
+    <inertial>
+      <origin xyz="0.000000 0.000000 -0.130000" />
+      <mass value="1.08750000" />
+      <inertia ixx="6.80593750e-03" ixy="0" ixz="0" iyy="6.80593750e-03" iyz="0" izz="1.35937500e-03" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.130000" />
+      <geometry>
+        <cylinder radius="0.050000" length="0.260000" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.130000" />
+      <geometry>
+        <cylinder radius="0.050000" length="0.260000" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hip_L_flexion" type="revolute">
+    <parent link="pelvis" />
+    <child link="hip_L_flexion_link" />
+    <origin xyz="0.100000 0.000000 0.000000" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52359878" upper="2.09439510" effort="1000" velocity="20" />
+  </joint>
+  <joint name="hip_L_adduction" type="revolute">
+    <parent link="hip_L_flexion_link" />
+    <child link="hip_L_adduction_link" />
+    <origin xyz="0.000000 0.000000 0.000000" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.43633231" upper="0.61086524" effort="1000" velocity="20" />
+  </joint>
+  <joint name="hip_L_rotation" type="revolute">
+    <parent link="hip_L_adduction_link" />
+    <child link="thigh_L" />
+    <origin xyz="0.000000 0.000000 0.000000" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.78539816" upper="0.78539816" effort="1000" velocity="20" />
+  </joint>
+  <joint name="knee_L" type="revolute">
+    <parent link="thigh_L" />
+    <child link="shank_L" />
+    <origin xyz="0.000000 0.000000 -0.430000" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.08726646" upper="2.44346095" effort="1000" velocity="20" />
+  </joint>
+  <joint name="ankle_L" type="revolute">
+    <parent link="shank_L" />
+    <child link="foot_L" />
+    <origin xyz="0.000000 0.000000 -0.430000" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.52359878" upper="0.78539816" effort="1000" velocity="20" />
+  </joint>
+</robot>
